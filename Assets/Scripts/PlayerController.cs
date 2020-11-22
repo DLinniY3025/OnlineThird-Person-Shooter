@@ -9,11 +9,12 @@ public class PlayerController : NetworkBehaviour
     public float sprintMultiplier;
     public float rotationLerpSpeed;
     public bool invertY = false;
+
     public Light flashlight;
     public Camera cam;
     public Animator animator;
 
-    float currentSpeed;
+    private float currentSpeed;
 
     private void Start()
     {
@@ -64,6 +65,12 @@ public class PlayerController : NetworkBehaviour
             currentSpeed = walkSpeed;
             CmdSetAnimationBool("Sprint", false);
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            CmdSetAnimationBool("Aim", true);
+        } else if (Input.GetMouseButtonUp(1))
+            CmdSetAnimationBool("Aim", false);
     }
 
     /*
